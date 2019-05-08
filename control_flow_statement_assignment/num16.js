@@ -9,16 +9,18 @@
 
 
 var line = 5;
+var result = "";
 
 for (var i = (line*2) - 1 ; i >= 1; i -= 2) {
   for (var j = 1; j < ((line * 2) - i) / 2; j++) {
-    process.stdout.write(" ");
+    result += " ";
   }
   for (var l = i; l >= 1; l--) {
-    process.stdout.write("*");
+    result += "*";
   }
   for (var k = 1; k < ((line * 2) - i) / 2; k++) {
-    process.stdout.write(" ");
+    result += " ";
   }
-  process.stdout.write("\n");
+  result += "\n";
 }
+console.log(result);

@@ -8,13 +8,15 @@
 // *****
 
 var line = 5;
+var result = "";
 
 for (var i = 1; i <= 5; i++) {
   for (var j = 1; j <= line - i; j++) {
-    process.stdout.write(" ");
+    result += " ";
   }
   for (var k = 1; k <= i; k++) {
-    process.stdout.write("*");
+    result += "*";
   }
-  process.stdout.write("\n");
+  result += "\n";
 }
+console.log(result);

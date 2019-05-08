@@ -10,10 +10,13 @@
 // *****
 
 var line = 5;
+var result = "";
 
 for(var i=1;i<=line;i++){
   for(var j=1;j<=i;j++){
-    process.stdout.write("*");
+    result += "*";
   }
-  process.stdout.write("\n");
+  result += "\n";
 }
+
+console.log(result);
