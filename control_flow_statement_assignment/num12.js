@@ -7,17 +7,15 @@
 //    **
 //     *
 
-
-var line = 5;
-var result = "";
-
-for (var i = line; i >= 1; i--) {
-  for (var j = 1; j < 6 - i; j++) {
-    result += " ";
+const line = 5;
+let result = '';
+for (let i = line; i >= 1; i--) {
+  for (let j = 1; j < 6 - i; j++) {
+    result += ' ';
   }
-  for (var k = 1; k <= i; k++) {
-    result += "*";
+  for (let k = 1; k <= i; k++) {
+    result += '*';
   }
-  result += "\n";
+  result += '\n';
 }
 console.log(result);

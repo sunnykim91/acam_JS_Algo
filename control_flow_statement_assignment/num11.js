@@ -9,14 +9,15 @@
 // ****
 // *****
 
-var line = 5;
-var result = "";
+const line = 5;
+let result = '';
 
-for(var i=1;i<=line;i++){
-  for(var j=1;j<=i;j++){
-    result += "*";
+for (let i = 1; i <= line; i++)
+{
+  for (let j = 1; j <= i; j++)
+  {
+    result += '*';
   }
-  result += "\n";
+  result += '\n';
 }
-
 console.log(result);

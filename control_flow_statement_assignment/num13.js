@@ -7,14 +7,13 @@
 // **
 // *
 
-var line = 5;
-var result = "";
+const line = 5;
+let result = '';
 
-for (var i = line; i >= 1; i--) {
-  for (var j = 1; j <= i; j++) {
-    result += "*";
+for (let i = line; i >= 1; i--) {
+  for (let j = 1; j <= i; j++) {
+    result += '*';
   }
-  result += "\n";
+  result += '\n';
 }
-
 console.log(result);

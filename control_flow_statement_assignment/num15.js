@@ -8,19 +8,20 @@
 // *********
 
 
-var line = 5;
-var result = "";
+const line = 5;
+let result = '';
 
-for (var i = 1; i < line*2; i+=2) {
-  for (var j = 1; j < ((line * 2) - i) / 2 ; j++) {
-    result += " ";
+for (let i = 1; i < line * 2; i += 2) {
+  for (let j = 1; j < ((line * 2) - i) / 2; j++) {
+    result += ' ';
   }
-  for( var l=1; l<=i;l++){
-    result += "*";
+  for (let l = 1; l <= i; l++)
+  {
+    result += '*';
   }
-  for (var k = 1; k < ((line * 2) - i) / 2; k++) {
-    result += " ";
+  for (let k = 1; k < ((line * 2) - i) / 2; k++) {
+    result += ' ';
   }
-  result += "\n";
+  result += '\n';
 }
 console.log(result);
