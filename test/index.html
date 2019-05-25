@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id='name'>
+    hello 
+  </div>
+  <script>
+    const random25 = [];
+    while(random25.length <25){
+       let randomNum = Math.floor((Math.random() * 25)) + 1;
+       if (!random25.includes(randomNum)) random25.push(randomNum);
+    }
+    let x = 1;
+
+    while(x < 25){
+      test = random25[x];
+      test2 = document.createElement('button');
+      document.createAttribute.test2('id');
+      test2.value = x;
+      test2.innerHTML = test; // innerHTML을 사용하여 text를 html로 파싱 후 자식노드로 추가
+      document.body.append(test2);
+      x++;
+    };
+    
+
+
+  </script> 
+</body>
+</html>

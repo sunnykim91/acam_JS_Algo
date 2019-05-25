@@ -14,6 +14,7 @@ module.exports = {
         "quotes": ["error", "single"],
         "no-underscore-dangle": "warn",
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-        "comma-dangle": ["error", "never"]
+        "comma-dangle": ["error", "never"],
+        "no-var":0
     }
 };
