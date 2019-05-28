@@ -1,9 +1,10 @@
 let todos = [
-  { id: 1, content: 'HTML', completed: true },
+  { id: 1, content: 'HTML', completed: false },
   { id: 2, content: 'CSS', completed: true },
   { id: 3, content: 'Javascript', completed: false }
 ];
-
+let copyTodos = [];
+let navState = 'all';
 
 const $todos = document.querySelector('.todos');
 const $inputTodo = document.querySelector('.input-todo');
@@ -11,12 +12,20 @@ const $customCheckbox = document.querySelector('.custom-checkbox');
 const $btn = document.querySelector('.btn');
 const $comtodos = document.querySelector('.completed-todos');
 const $actodos = document.querySelector('.active-todos');
-
+const $nav = document.querySelector('.nav');
 
 function render() {
   let html = '';
 
-  todos.forEach(({ id, content, completed }) => {
+  if (navState === 'all') {
+    copyTodos = todos;
+  } else if (navState === 'active') {
+    copyTodos = todos.filter(todo => !todo.completed);
+  } else {
+    copyTodos = todos.filter(todo => todo.completed);
+  }
+
+  copyTodos.forEach(({ id, content, completed }) => {
     html += `<li id=${id} class="todo-item">
         <input class="custom-checkbox" type="checkbox" id="ck-${id}" ${[completed ? 'checked' : '']}>
         <label for="ck-${id}">${content}</label>
@@ -26,8 +35,7 @@ function render() {
 
   $todos.innerHTML = html;
 
-
-  const ctnImcomplete = todos.length - todos.filter(todo => todo.completed).length;
+  const ctnImcomplete = todos.filter(todo => !todo.completed).length;
   const ctnComplete = todos.filter(todo => todo.completed).length;
   $actodos.textContent = ctnImcomplete;
   $comtodos.textContent = ctnComplete;
@@ -36,6 +44,18 @@ function render() {
 function generateId() {
   return todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
 }
+
+$nav.addEventListener('click', (e) => {
+  // $nav요소의 자식요소들을 배열로변환
+  [...$nav.children].forEach((todo) => {
+    todo.classList.remove('active');
+  });
+  e.target.classList.add('active');
+
+  navState = e.target.id;
+
+  render();
+});
 
 $todos.onclick = function (e) {
   if (!e.target.classList.contains('remove-todo')) return;
