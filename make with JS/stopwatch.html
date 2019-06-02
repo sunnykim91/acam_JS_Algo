@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop watch</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+    .stop-watch {
+      font-family: 'Source Code Pro', monospace;
+      text-align: center;
+      font-size: 3em;
+      padding: 30px;
+    }
+
+    .control {
+      width: 300px;
+      padding: 5px;
+      margin-top: 15px;
+      font-size: 36px;
+      font-weight: bold;
+      border: 2px solid #f44336;
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .control:hover {
+      background: #f44336;
+      color: aliceblue;
+    }
+  </style>
+  <title>Stop watch</title>
+</head>
+
+<body>
+  <div class="stop-watch">
+    <div class="display">00:00:00</div>
+    <button class="control">Start</button>
+  </div>
+  <script>
+    const $btn = document.querySelector('.control');
+    const $display = document.querySelector('.display');
+
+    let minute = 0;
+    let second = 0;
+    let milsecond = 0;
+
+    let stopFlag = false;
+    let timer = 0;
+
+    function startTimer() {
+      milsecond++;
+      if (second > 59) {
+        minute++;
+        second = 0;
+      }
+      if (milsecond > 99) {
+        second++;
+        milsecond = 0;
+      }
+      $display.textContent = `${minute < 10 ? '0' + minute : minute}:${second < 10 ? '0' + second : second}:${milsecond < 10 ? '0' + milsecond : milsecond}`;
+    }
+
+    $btn.addEventListener('click', () => {
+      if (stopFlag) {
+        clearInterval(timer);
+        $btn.textContent = 'Start';
+        stopFlag = false;
+      } else {
+        timer = setInterval(startTimer, 10);
+        stopFlag = true;
+        $btn.textContent = 'Stop';
+      }
+    });
+  </script>
+</body>
+
+</html>
