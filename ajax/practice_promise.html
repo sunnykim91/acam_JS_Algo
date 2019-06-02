@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+</head>
+<body>
+  <pre class="result"></pre>
+  <script>
+    const $result = document.querySelector('.result');
+
+    const render = content => {$result.innerHTML = JSON.stringify(content,null,2)};
+
+    const promiseAjax = (method, url, payload) => {
+
+      return new Promise((resolve, reject)=>{
+        const xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(payload));
+
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+          if (xhr.status >= 200 && xhr.status < 400) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(xhr.status);
+          }
+        };
+      });
+    };
+
+    // promiseAjax('GET', 'http://localhost:3000/todos/')
+    //   .then(render)
+    //   .catch(console.error)
+
+    // promiseAjax('POST', 'http://localhost:3000/todos/', {id:5, content:"smartphone", completed: true })
+    // .then(render)
+    // .catch(console.error)
+
+    // promiseAjax('DELETE', 'http://localhost:3000/todos/5'); 
+
+    // promiseAjax('PUT', 'http://localhost:3000/todos/1',{content:'sunnykim'})
+    //   .then(render)
+    //   .catch(console.error)
+
+    // promiseAjax('PATCH', 'http://localhost:3000/todos/4', { content: 'sunnykim' })
+    //   .then(render)
+    //   .catch(console.error)
+
+    // promiseAjax('GET', 'http://localhost:3000/todos/')
+    // .then(render)
+    // .catch(console.error)
+    
+    (async function () {
+      // await promiseAjax('POST', 'http://localhost:3000/todos/',{id:7, content:'helloworld', completed: true});
+      // await promiseAjax('DELETE', 'http://localhost:3000/todos/7');
+      // await promiseAjax('PUT','http://localhost:3000/todos/3',{content:'worldhello'});
+      await promiseAjax('PATCH','http://localhost:3000/todos/4',{content:'worldhello'});
+      const res = await promiseAjax('GET', 'http://localhost:3000/todos/');
+      render(res);
+    }());
+
+  </script>
+</body>
+</html>
